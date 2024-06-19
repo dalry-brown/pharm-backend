@@ -18,25 +18,28 @@ public class Drugs {
     private Long id;
 
     private String name;
-    private String supplier;
-    private double price;
+    private String category;
+    private Double quantity;
+    private String description;
 
-    public Drugs(Long id, String name, String supplier, double price) {
+    public Drugs(Long id, String name, String category, Double quantity, String description) {
         this.id = id;
         this.name = name;
-        this.supplier = supplier;
-        this.price = price;
+        this.category = category;
+        this.description = description;
+        this.quantity = quantity;
     }
 
-    public Drugs(String name, String supplier, double price) {
+    public Drugs(String name, String category, double quantity, String description) {
         this.name = name;
-        this.supplier = supplier;
-        this.price = price;
+        this.category = category;
+        this.quantity = quantity;
+        this.description = description;
     }
+
     public Drugs() {
 
     }
-
 
     public Long getId() {
         return id;
@@ -44,14 +47,6 @@ public class Drugs {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(String supplier) {
-        this.supplier = supplier;
     }
 
     public String getName() {
@@ -62,11 +57,27 @@ public class Drugs {
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
+    public String getCategory() {
+        return category;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

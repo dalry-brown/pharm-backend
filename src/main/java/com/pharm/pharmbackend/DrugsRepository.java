@@ -8,5 +8,6 @@ import java.util.Optional;
 
 public interface DrugsRepository extends JpaRepository<Drugs, Long> {
         Optional<Drugs> findByName(String name);
+
     }
 
