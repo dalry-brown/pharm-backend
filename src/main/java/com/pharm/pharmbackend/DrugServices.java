@@ -1,5 +1,6 @@
 package com.pharm.pharmbackend;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +44,7 @@ public class DrugServices {
 
 
     // update all the drugs features
+    @Transactional
     public void update(Long id, String name, String category, double quantity, String description) {
         Drugs drugs = drugRepository.findById(id).orElseThrow(()->new IllegalStateException("Drugs not found") );
         if(name != null && !name.isEmpty()&& !Objects.equals(drugs.getName(), name)) {
