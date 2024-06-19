@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping(path = "api/v1/drugs")
 public class DrugsController {
 
-    private DrugServices drugService;
+    private final DrugServices drugService;
 
     @Autowired
     public DrugsController(DrugServices drugServices) {

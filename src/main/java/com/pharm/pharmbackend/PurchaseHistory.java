@@ -2,18 +2,20 @@ package com.pharm.pharmbackend;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+@Table
 @Entity
 public class PurchaseHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "drug_id")
     private Drugs drug;
 
+    @Transient
     private LocalDateTime purchaseTime;
 
     private String buyer;
@@ -22,17 +24,15 @@ public class PurchaseHistory {
 
     public PurchaseHistory() {}
 
-    public PurchaseHistory(Drugs drug, Long id, LocalDateTime purchaseTime, String buyer, int quantity) {
+    public PurchaseHistory(Drugs drug, Long id, String buyer, int quantity) {
         this.drug = drug;
         this.id = id;
-        this.purchaseTime = purchaseTime;
         this.buyer = buyer;
         this.quantity = quantity;
     }
 
-    public PurchaseHistory(Drugs drug, LocalDateTime purchaseTime, String buyer, int quantity) {
+    public PurchaseHistory(Drugs drug, String buyer, int quantity) {
         this.drug = drug;
-        this.purchaseTime = purchaseTime;
         this.buyer = buyer;
         this.quantity = quantity;
     }
@@ -54,7 +54,7 @@ public class PurchaseHistory {
     }
 
     public LocalDateTime getPurchaseTime() {
-        return purchaseTime;
+        return LocalDateTime.now();
     }
 
     public void setPurchaseTime(LocalDateTime purchaseTime) {

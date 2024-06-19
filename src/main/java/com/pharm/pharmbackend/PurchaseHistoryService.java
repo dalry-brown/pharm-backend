@@ -13,7 +13,7 @@ public class PurchaseHistoryService {
         return purchaseHistoryRepository.findByDrugId(drugId);
     }
 
-    public PurchaseHistory addPurchaseHistory(PurchaseHistory purchaseHistory) {
-        return purchaseHistoryRepository.save(purchaseHistory);
+    public void addPurchaseHistory(PurchaseHistory purchaseHistory) {
+        purchaseHistoryRepository.save(purchaseHistory);
     }
 }
