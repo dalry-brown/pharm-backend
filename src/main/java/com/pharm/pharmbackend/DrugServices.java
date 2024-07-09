@@ -1,6 +1,7 @@
 package com.pharm.pharmbackend;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class DrugServices {
     }
 
     public List<Drugs> getAllDrugs() {
+
         // Fetch all drugs from the repository
         List<Drugs> drugsList = drugsRepository.findAll();
 
@@ -49,8 +51,20 @@ public class DrugServices {
         }
     }
 
-    public Optional<Drugs> getDrugById(Integer id) {
-        return drugsRepository.findById(id);
+    public List<Drugs> getDrugByName(String drugname) {
+        List<Drugs> drugsList = drugsRepository.findAll();
+        ArrayList<Drugs> drugsArrayList = new ArrayList<>(drugsList);
+        return linearSearch(drugsArrayList, drugname);
+    }
+
+    private List<Drugs> linearSearch(ArrayList<Drugs> list, String drugName) {
+        ArrayList<Drugs> result = new ArrayList<>();
+        for (Drugs drug : list) {
+            if (drug.getDrugName().equalsIgnoreCase(drugName)) {
+                result.add(drug);
+            }
+        }
+        return result;
     }
 
     public Drugs addDrug(Drugs drugs) {

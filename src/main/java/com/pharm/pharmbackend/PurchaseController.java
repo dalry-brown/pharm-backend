@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("purchase")
-@CrossOrigin(origins = "http://192.168.8.101:5173/" )
+@CrossOrigin(origins = "http://localhost:5173" )
 public class PurchaseController {
     private final PurchaseServices purchaseServices;
 
@@ -22,12 +22,11 @@ public class PurchaseController {
         return purchaseServices.getAllPurchases();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Purchase> getPurchaseById (@PathVariable Integer id){
-        return purchaseServices.getPurchaseId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/{drugname}")
+    public List<Purchase> getDrugByPurchasedDrug(@PathVariable String drugname){
+        return purchaseServices.getPurchasedDrugByName(drugname);
     }
+
 
     @PostMapping
     public Purchase addPurchase(@RequestBody Purchase purchase){

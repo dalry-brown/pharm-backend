@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("drugs")
-@CrossOrigin(origins = "http://192.168.8.101:5173/")
+@CrossOrigin(origins = "http://localhost:5173")
 public class DrugsController {
 
     private final DrugServices drugServices;
@@ -24,11 +24,9 @@ public class DrugsController {
         return drugServices.getAllDrugs();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Drugs> getDrugById(@PathVariable Integer id){
-        return drugServices.getDrugById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/{drugname}")
+    public List<Drugs> getDrugByDrugname(@PathVariable String drugname){
+        return drugServices.getDrugByName(drugname);
     }
 
     @PostMapping
