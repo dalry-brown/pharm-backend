@@ -57,6 +57,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.9.0</version> <!-- Or later version that supports JDK 17 -->
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
